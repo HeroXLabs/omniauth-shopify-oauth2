@@ -22,6 +22,9 @@ module OmniAuth
       # mismatch the requested scopes.
       option :validate_granted_scopes, true
 
+      # For client side oauth request, we let client app deal with CSRF
+      option :provider_ignores_state, true
+
       option :setup, proc { |env|
         request = Rack::Request.new(env)
         env['omniauth.strategy'].options[:client_options][:site] = "https://#{request.GET['shop']}"
